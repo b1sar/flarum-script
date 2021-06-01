@@ -50,8 +50,8 @@ then
                     ServerAdmin $MY_EMAIL
                     ServerName $MY_DOMAIN_NAME
                     ServerAlias www.$MY_DOMAIN_NAME
-                    DocumentRoot /var/www/$MY_DOMAIN_NAME
-                    <Directory /var/www/$MY_DOMAIN_NAME>                    
+                    DocumentRoot /var/www/$MY_DOMAIN_NAME/public
+                    <Directory /var/www/$MY_DOMAIN_NAME/public>                    
                         AllowOverride all
                     </Directory>
                     ErrorLog /var/log/apache2/$MY_DOMAIN_NAME-error.log
