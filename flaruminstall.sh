@@ -33,7 +33,7 @@ then
     sudo add-apt-repository --yes ppa:ondrej/php
     sudo apt-get update
     sudo apt-get -y install apache2 mariadb-server mariadb-client
-    sudo apt install -y php7.3 libapache2-mod-php7.3 php7.3-common php7.3-mbstring php7.3-xmlrpc php7.3-soap php7.3-gd php7.3-xml php7.3-intl php7.3-mysql php7.3-cli php7.3-mcrypt php7.3-zip php7.3-curl php7.3-dom composer openssl
+    sudo apt install -y php7.4 libapache2-mod-php7.4 php7.4-common php7.4-mbstring php7.4-xmlrpc php7.4-soap php7.4-gd php7.4-xml php7.4-intl php7.4-mysql php7.4-cli php7.4-mcrypt php7.4-zip php7.4-curl php7.4-dom composer openssl
 
     sudo mkdir -p /var/www/$MY_DOMAIN_NAME
     cd /var/www/$MY_DOMAIN_NAME
