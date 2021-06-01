@@ -42,7 +42,7 @@ then
     
     sudo mkdir -p /var/www/$MY_DOMAIN_NAME
     cd /var/www/$MY_DOMAIN_NAME
-    composer create-project flarum/flarum . --stability=beta
+    composer create-project flarum/flarum .
 
     chown -R www-data:www-data /var/www/$MY_DOMAIN_NAME    
     chmod 775 /var/www/$MY_DOMAIN_NAME
