@@ -34,7 +34,7 @@ then
     sudo apt-get update
     sudo apt-get -y install apache2 mariadb-server mariadb-client
     sudo apt install -y php7.4 libapache2-mod-php7.4 php7.4-common php7.4-mbstring php7.4-xmlrpc php7.4-soap php7.4-gd php7.4-xml php7.4-intl php7.4-mysql php7.4-cli php7.4-mcrypt php7.4-zip php7.4-curl php7.4-dom openssl
-
+   
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
     php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
     sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
@@ -44,7 +44,11 @@ then
     cd /var/www/$MY_DOMAIN_NAME
     composer create-project flarum/flarum . --stability=beta
 
-    sudo chown -R www-data:www-data /var/www/$MY_DOMAIN_NAME    
+    chown -R www-data:www-data /var/www/$MY_DOMAIN_NAME    
+    chmod 775 /var/www/$MY_DOMAIN_NAME
+    chmod 775 -R /var/www/$MY_DOMAIN_NAME/public/assets
+    chmod 775 /var/www/$MY_DOMAIN_NAME/storage
+
 
     sudo echo " <VirtualHost *:80>
                     ServerAdmin $MY_EMAIL
@@ -68,6 +72,13 @@ then
 
     sudo mysql -uroot -p$DB_PSWD -e "CREATE DATABASE $DB_NAME"
     sudo mysql -uroot -p$DB_PSWD -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO 'root'@'localhost' IDENTIFIED BY '$DB_PSWD'"
+    
+    #configure ssl
+    sudo apt install certbot python3-certbot-apache
+    sudo ufw allow 'Apache Full'
+    sudo ufw delete allow 'Apache'
+    sudo certbot --apache
+
 else
     clear
 fi
